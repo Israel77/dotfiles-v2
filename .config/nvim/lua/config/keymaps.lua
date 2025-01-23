@@ -34,26 +34,26 @@ map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>bd", function()
-  Snacks.bufdelete()
+    Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
 map("n", "<leader>bo", function()
-  Snacks.bufdelete.other()
+    Snacks.bufdelete.other()
 end, { desc = "Delete Other Buffers" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
 -- Clear search and stop snippet on escape
 map({ "i", "n", "s" }, "<esc>", function()
-  vim.cmd("noh")
-  return "<esc>"
+    vim.cmd("noh")
+    return "<esc>"
 end, { expr = true, desc = "Escape and Clear hlsearch" })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
 map(
-  "n",
-  "<leader>ur",
-  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-  { desc = "Redraw / Clear hlsearch / Diff Update" }
+    "n",
+    "<leader>ur",
+    "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+    { desc = "Redraw / Clear hlsearch / Diff Update" }
 )
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
@@ -72,6 +72,9 @@ map("i", ";", ";<c-g>u")
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>update<cr><esc>", { desc = "Save File" })
 map({ "v", "n" }, "<leader>fs", "<cmd>update<cr><esc>", { desc = "Save File" })
+
+-- format
+map({ "n" }, "<leader>;", vim.lsp.buf.format, { desc = "Format buffer" })
 
 --keywordprg
 map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
@@ -98,12 +101,17 @@ map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 
 -- diagnostic
 local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
-  end
+    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+    severity = severity and vim.diagnostic.severity[severity] or nil
+    return function()
+        go({ severity = severity })
+    end
 end
+
+local toggle_diagnostic = function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end
+
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
@@ -111,12 +119,10 @@ map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
-
--- stylua: ignore start
-
+map({ "n", "v" }, "<leader>dt", toggle_diagnostic, { desc = "Toggle diagnostics" })
 
 if vim.lsp.inlay_hint then
-  Snacks.toggle.inlay_hints():map("<leader>uh")
+    Snacks.toggle.inlay_hints():map("<leader>uh")
 end
 
 -- quit
@@ -132,8 +138,8 @@ map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim
 -- floating terminal
 map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
 map("n", "<leader>ft", function() Snacks.terminal(nil, {}) end, { desc = "Terminal (Root Dir)" })
-map("n", "<c-/>",      function() Snacks.terminal(nil, {}) end, { desc = "Terminal (Root Dir)" })
-map("n", "<c-_>",      function() Snacks.terminal(nil, {}) end, { desc = "which_key_ignore" })
+map("n", "<c-/>", function() Snacks.terminal(nil, {}) end, { desc = "Terminal (Root Dir)" })
+map("n", "<c-_>", function() Snacks.terminal(nil, {}) end, { desc = "which_key_ignore" })
 
 -- Terminal Mappings
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
@@ -158,13 +164,13 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- native snippets. only needed on < 0.11, as 0.11 creates these by default
 if vim.fn.has("nvim-0.11") == 0 then
-  map("s", "<Tab>", function()
-    return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<Tab>"
-  end, { expr = true, desc = "Jump Next" })
-  map({ "i", "s" }, "<S-Tab>", function()
-    return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<S-Tab>"
-  end, { expr = true, desc = "Jump Previous" })
+    map("s", "<Tab>", function()
+        return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<Tab>"
+    end, { expr = true, desc = "Jump Next" })
+    map({ "i", "s" }, "<S-Tab>", function()
+        return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<S-Tab>"
+    end, { expr = true, desc = "Jump Previous" })
 end
 
 
-map({"n", "v"}, "<leader><space>", require("fzf-lua").files , { desc = "Previous Tab" })
+map({ "n", "v" }, "<leader><space>", require("fzf-lua").files, { desc = "Previous Tab" })

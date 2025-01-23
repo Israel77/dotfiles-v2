@@ -12,3 +12,7 @@ vim.opt.number = true
 vim.opt.signcolumn = "number"
 vim.opt.cursorline = true
 
+-- disable diagnostics by default
+vim.diagnostic.enable(false)
+
+vim.cmd("colorscheme catppuccin-mocha")

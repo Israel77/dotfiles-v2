@@ -1,6 +1,6 @@
 ### PENGWIN BEGIN ###
 if test -f .pengwinrc; then
-    source .pengwinrc
+    source .pengwinrc &> /dev/null
 fi
 ### PENGWIN END   ###
 INIT_FILES=($(find $HOME/.zshrc.d -name '*.*sh' | tr '\n' ' '))
