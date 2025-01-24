@@ -111,11 +111,6 @@ local diagnostic_goto = function(next, severity)
     end
 end
 
-local toggle_diagnostic = function()
-    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-    vim.notify("Diagnostics " .. (vim.diagnostic.is_enabled() and "enabled" or "disabled"))
-end
-
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
@@ -123,7 +118,7 @@ map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
-map({ "n", "v" }, "<leader>dt", toggle_diagnostic, { desc = "Toggle diagnostics" })
+Snacks.toggle.diagnostics():map("<leader>ud"):map("<leader>dt")
 
 if vim.lsp.inlay_hint then
     Snacks.toggle.inlay_hints():map("<leader>uh")
@@ -180,4 +175,4 @@ if vim.fn.has("nvim-0.11") == 0 then
 end
 
 
-map({ "n", "v" }, "<leader><space>", require("fzf-lua").files, { desc = "Previous Tab" })
+map({ "n", "v" }, "<leader><space>", require("fzf-lua").files, { desc = "Find files" })
