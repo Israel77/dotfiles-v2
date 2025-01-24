@@ -1,8 +1,9 @@
 {
   "blink.cmp": { "branch": "main", "commit": "1cc3b1a908fbcfd15451c4772759549724f38524" },
   "cs:catppuccin": { "branch": "main", "commit": "f67b886d65a029f12ffa298701fb8f1efd89295d" },
-  "cs:mono-jade": { "branch": "main", "commit": "373e3c96d5aede9cfc74ac22cfd99fbdd53f3c51" },
+  "cs:komau": { "branch": "master", "commit": "c525eebc9a46e889144216dc3a965783abaccf98" },
   "cs:onedark": { "branch": "master", "commit": "67a74c275d1116d575ab25485d1bfa6b2a9c38a6" },
+  "cs:solarized": { "branch": "main", "commit": "c0dfe1cbfabd93b546baf5f1408f5df7e02e2050" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
   "fzf-lua": { "branch": "main", "commit": "86d8ee3dee6539dad1af07cdfb482ef7ceb0a96c" },
   "lazy.nvim": { "branch": "main", "commit": "d8f26efd456190241afd1b0f5235fe6fdba13d4a" },

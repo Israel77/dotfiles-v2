@@ -136,14 +136,17 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
--- LazyVim Changelog
-map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
-
 -- floating terminal
-map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
-map("n", "<leader>ft", function() Snacks.terminal(nil, {}) end, { desc = "Terminal (Root Dir)" })
-map("n", "<c-/>", function() Snacks.terminal(nil, {}) end, { desc = "Terminal (Root Dir)" })
-map("n", "<c-_>", function() Snacks.terminal(nil, {}) end, { desc = "which_key_ignore" })
+map("n", "<leader>fT", function()
+    if vim.fn.executable("zsh")then
+        Snacks.terminal("zsh")
+    elseif vim.fn.executable("bash") then
+        Snacks.terminal("bash")
+    else
+        Snacks.terminal("sh")
+    end
+end, { desc = "Floating terminal" })
+map("n", "<leader>ft", function() Snacks.terminal() end, { desc = "Bottom terminal" })
 
 -- Terminal Mappings
 map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
