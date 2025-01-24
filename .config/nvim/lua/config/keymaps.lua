@@ -76,6 +76,9 @@ map({ "v", "n" }, "<leader>fs", "<cmd>update<cr><esc>", { desc = "Save File" })
 -- format
 map({ "n" }, "<leader>;", vim.lsp.buf.format, { desc = "Format buffer" })
 
+-- rename
+map({ "n" }, "<leader>r", vim.lsp.buf.rename, { desc = "Format buffer" })
+
 --keywordprg
 map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
@@ -110,6 +113,7 @@ end
 
 local toggle_diagnostic = function()
     vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+    vim.notify("Diagnostics " .. (vim.diagnostic.is_enabled() and "enabled" or "disabled"))
 end
 
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })

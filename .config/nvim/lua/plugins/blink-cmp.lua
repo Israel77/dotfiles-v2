@@ -4,13 +4,31 @@ return {
         "rafamadriz/friendly-snippets"
     },
     version = "*",
-    keymap = { preset = "default" },
-    appearence = {
-        use_nvim_cmp_as_default = true,
-        nerd_font_variant = "mono"
+    opts = {
+        keymap = { preset = "super-tab" },
+        appearance = {
+            use_nvim_cmp_as_default = true,
+            nerd_font_variant = "mono"
+        },
+        sources = {
+            default = { "lsp", "path", "snippets", "buffer" }
+        },
+        completion = {
+            accept = { auto_brackets = { enabled = false } },
+        },
+        enabled = function()
+            return not CmpDisabled
+        end
     },
-    source = {
-        default = { "lsp", "path", "snippets", "buffer" }
-    },
-    opts_extend = { "sources.default" }
+    opts_extend = { "sources.default" },
+    keys = {
+        {
+            "<leader>ct",
+            function()
+                CmpDisabled = not CmpDisabled
+                vim.notify("blink.cmp " .. (CmpDisabled and "disabled" or "enabled"))
+            end,
+            desc = "Toggle blink.cmp"
+        }
+    }
 }
