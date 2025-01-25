@@ -19,10 +19,8 @@ return {
         },
         completion = {
             accept = { auto_brackets = { enabled = false } },
-            cycle = {
-                from_top = true,
-                from_bottom = true,
-            }
+            list = { cycle = { from_top = true, from_bottom = true }
+        }
         },
         enabled = function()
             return not CmpDisabled
@@ -36,7 +34,7 @@ return {
                 CmpDisabled = not CmpDisabled
                 vim.notify((CmpDisabled and "Disabled" or "Enabled") .. " completion")
             end,
-            desc = "Toggle blink.cmp"
+            desc = "Toggle completion"
         }
     }
 }
