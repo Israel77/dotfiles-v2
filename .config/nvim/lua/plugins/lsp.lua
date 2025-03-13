@@ -12,7 +12,8 @@ return {
                 },
             },
         },
-        { "saghen/blink.cmp" }
+        { "saghen/blink.cmp" },
+        { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" }
     },
     opts = {
         servers = {
