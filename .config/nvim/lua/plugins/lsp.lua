@@ -18,9 +18,11 @@ return {
     opts = {
         servers = {
             lua_ls = {},
-            ols = {}
-        }
+            ols = {},
+            rust_analyzer = {}
+        },
     },
+    -- keys = require("keymaps").get(),
     config = function(_, opts)
         local lspconfig = require('lspconfig')
 

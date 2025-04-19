@@ -73,12 +73,6 @@ map("i", ";", ";<c-g>u")
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>update<cr><esc>", { desc = "Save File" })
 map({ "v", "n" }, "<leader>fs", "<cmd>update<cr><esc>", { desc = "Save File" })
 
--- format
-map({ "n" }, "<leader>;", vim.lsp.buf.format, { desc = "Format buffer" })
-
--- rename
-map({ "n" }, "<leader>r", vim.lsp.buf.rename, { desc = "Format buffer" })
-
 --keywordprg
 map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
@@ -176,4 +170,12 @@ if vim.fn.has("nvim-0.11") == 0 then
 end
 
 
+-- Fzf-lua
 map({ "n", "v" }, "<leader><space>", require("fzf-lua").files, { desc = "Find files" })
+map({ "n", "v" }, "gd", function() vim.cmd("FzfLua lsp_definitions jump1=true ignore_current_line=true") end , { desc = "Go to definition" })
+map({ "n", "v" }, "gr", function() vim.cmd("FzfLua lsp_references      jump1=true ignore_current_line=true") end, {desc = "References", nowait = true })
+map({ "n", "v" }, "gI", function() vim.cmd("FzfLua lsp_implementations jump1=true ignore_current_line=true") end, {desc = "Goto Implementation" })
+map({ "n", "v" }, "gy", function() vim.cmd("FzfLua lsp_typedefs        jump1=true ignore_current_line=true") end, {desc = "Goto T[y]pe Definition" })
+
+-- Makefiles
+map({ "n" }, "<leader>mk", function() vim.cmd("!make") end, {desc = "Run make" })
