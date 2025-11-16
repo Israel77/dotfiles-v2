@@ -19,7 +19,14 @@ return {
         servers = {
             lua_ls = {},
             ols = {},
-            rust_analyzer = {}
+            rust_analyzer = {},
+            zls = {},
+            clangd = {
+                cmd = {
+                    "clangd",
+                    "--fallback-style=webkit"
+                }
+            }
         },
     },
     -- keys = require("keymaps").get(),

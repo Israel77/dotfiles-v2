@@ -1,10 +1,9 @@
 return {
     "saghen/blink.cmp",
-    dependencies = {
-        "rafamadriz/friendly-snippets"
-    },
     version = "*",
+    dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
     opts = {
+        snippets = { preset = "luasnip"},
         keymap = {
             preset = "super-tab",
             ["<C-k>"] = { "select_prev", "fallback" },

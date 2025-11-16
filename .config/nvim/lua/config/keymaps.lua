@@ -172,10 +172,11 @@ end
 
 -- Fzf-lua
 map({ "n", "v" }, "<leader><space>", require("fzf-lua").files, { desc = "Find files" })
+map({ "n", "v" }, "<leader>g", require("fzf-lua").git_files, { desc = "Find files (git)" })
 map({ "n", "v" }, "gd", function() vim.cmd("FzfLua lsp_definitions jump1=true ignore_current_line=true") end , { desc = "Go to definition" })
 map({ "n", "v" }, "gr", function() vim.cmd("FzfLua lsp_references      jump1=true ignore_current_line=true") end, {desc = "References", nowait = true })
 map({ "n", "v" }, "gI", function() vim.cmd("FzfLua lsp_implementations jump1=true ignore_current_line=true") end, {desc = "Goto Implementation" })
 map({ "n", "v" }, "gy", function() vim.cmd("FzfLua lsp_typedefs        jump1=true ignore_current_line=true") end, {desc = "Goto T[y]pe Definition" })
 
 -- Makefiles
-map({ "n" }, "<leader>mk", function() vim.cmd("!make") end, {desc = "Run make" })
+map({ "n" }, "<leader>mk", function() vim.cmd("make") end, {desc = "Run make command" })
