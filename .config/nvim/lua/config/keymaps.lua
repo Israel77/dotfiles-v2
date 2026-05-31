@@ -180,3 +180,6 @@ map({ "n", "v" }, "gy", function() vim.cmd("FzfLua lsp_typedefs        jump1=tru
 
 -- Makefiles
 map({ "n" }, "<leader>mk", function() vim.cmd("make") end, {desc = "Run make command" })
+
+-- Notification history
+map({ "n", "v" }, "<leader>nh", Snacks.notifier.show_history, { desc = "Show notification history" })

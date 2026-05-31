@@ -13,11 +13,12 @@ return {
             },
         },
         { "saghen/blink.cmp" },
-        { "williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim" }
+        { "mason-org/mason.nvim", "mason-org/mason-lspconfig.nvim" }
     },
     opts = {
         servers = {
             lua_ls = {},
+            gopls = {},
             ols = {},
             rust_analyzer = {},
             zls = {},
@@ -31,11 +32,10 @@ return {
     },
     -- keys = require("keymaps").get(),
     config = function(_, opts)
-        local lspconfig = require('lspconfig')
 
         for server, config in pairs(opts.servers) do
             config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-            lspconfig[server].setup(config)
+            vim.lsp.enable(server)
         end
     end
 }
