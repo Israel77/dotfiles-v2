@@ -1,5 +1,6 @@
 return {
     "saghen/blink.cmp",
+    branch = "v1",
     version = "*",
     dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
     opts = {
@@ -18,8 +19,7 @@ return {
         },
         completion = {
             accept = { auto_brackets = { enabled = false } },
-            list = { cycle = { from_top = true, from_bottom = true }
-        }
+            list = { cycle = { from_top = true, from_bottom = true } }
         },
         enabled = function()
             return not CmpDisabled

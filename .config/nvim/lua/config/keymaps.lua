@@ -126,15 +126,7 @@ map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect Tree" })
 
 -- terminal
-map("n", "<leader>fT", function()
-    if vim.fn.executable("zsh")then
-        Snacks.terminal("zsh")
-    elseif vim.fn.executable("bash") then
-        Snacks.terminal("bash")
-    else
-        Snacks.terminal("sh")
-    end
-end, { desc = "Floating terminal" })
+map("n", "<leader>fT", function() Snacks.terminal(vim.opt.shell:get()) end, { desc = "Floating terminal" })
 map("n", "<leader>ft", function() Snacks.terminal() end, { desc = "Bottom terminal" })
 map("n", "<c-/>", function() Snacks.terminal() end, { desc = "Bottom terminal" })
 
